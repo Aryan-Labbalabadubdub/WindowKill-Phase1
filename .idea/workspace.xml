@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="426285f1-3a5f-4bb3-81ef-6e29e1a098c4" name="Changes" comment="A full Pure-Java recreation of torcado's WindowKill">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jpa-buddy.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AudioHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/GameLoop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/TypedActionListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/UserInputHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/UserInterfaceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/DefaultMethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/DimensionConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/EntityConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/FilePaths.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ImpactConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/MovementConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ShrinkConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/UIConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/UIMessageConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/Variables.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ViewConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/constants/WaveConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/MotionPanelModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/WaveManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/characterModels/EpsilonModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/characterModels/GeoShapeModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/characterModels/SquarantineModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/characterModels/TrigorathModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/collision/Collidable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/collision/Collision.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/collision/CollisionState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/entityModel/AttackTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/entityModel/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/entityModel/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/movement/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/movement/Movable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/movement/Movement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/projectileModels/BulletModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/projectileModels/Long_Ranged.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/BulletView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/Utils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/charaterViews/EpsilonView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/charaterViews/GeoShapeView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/charaterViews/SquarantineView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/charaterViews/TrigorathView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/containers/GlassFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/containers/MotionPanelView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/containers/RotatedIcon.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/ButtonB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/MainMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/PanelB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/PauseMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/SettingsMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/SkillTree.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/SliderB.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/TopElement.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/TopMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/backgrounds/bg0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/backgrounds/bg1.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN1.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN2.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN3.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN4.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN5.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/countdown/COUNTDOWN6.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/down effects/down0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/down effects/down1.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/down effects/down2.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/down effects/down3.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/down effects/down4.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit1.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit2.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit3.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit4.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/hit effects/hit5.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/effects/shoot effects/shoot0.ogg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fonts/Mantinia.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/fonts/Orbitron.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/epsilon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/squarantine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/trigorath.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/active_skill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/category0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/category1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/category2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/category3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/menu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/menu_button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/skill_locked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/skill_unlocked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/slider.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/small_field_button.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/small_menu_button.png" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="vmOptionsForImporter" value="-Xmx512m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2e6XxiSnOjUFR9RBoq4AbG2bobW" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Aryan/IdeaProjects/WindowKill_Phase1/src/main/resources/ui elements&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.notifications&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="view.menu" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui elements" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\fonts" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\backgrounds" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui items" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="controller.constants.DefaultMethods" />
+      <recent name="controller.constants.EntityConstants" />
+      <recent name="controller.UI_MESSAGE_CONSTANTS" />
+      <recent name="controller.UI_CONSTANTS" />
+      <recent name="controller.ENTITY_CONSTANTS" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\shoot effects" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui elements" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui elements\skills" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\hit effects" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\down effects" />
+    </key>
+    <key name="IntroduceConstantDialog.RECENTS_KEY">
+      <recent name="controller.constants.Variables" />
+      <recent name="controller.constants.DimensionConstants" />
+      <recent name="controller.Constants" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="view.menu" />
+    </key>
+    <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="model" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="WindowKill" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="WindowKill_Phase1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="426285f1-3a5f-4bb3-81ef-6e29e1a098c4" name="Changes" comment="" />
+      <created>1711226250245</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711226250245</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="A full Pure-Java recreation of torcado's WindowKill" />
+    <option name="LAST_COMMIT_MESSAGE" value="A full Pure-Java recreation of torcado's WindowKill" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WindowKill_Phase1$WindowKill.ic" NAME="WindowKill Coverage Results" MODIFIED="1712017679019" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
