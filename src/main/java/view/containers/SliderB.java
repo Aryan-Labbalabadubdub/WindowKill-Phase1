@@ -1,4 +1,4 @@
-package view.menu;
+package view.containers;
 
 import view.Utils;
 
@@ -17,9 +17,9 @@ import static view.Utils.darkenImage;
 
 public class SliderB extends JSlider {
     public BufferedImage imageSave;
-    Container container;
-    JLabel backgroundLabel;
-    ButtonB labelButton;
+    public Container container;
+    public JLabel backgroundLabel;
+    public ButtonB labelButton;
 
     public SliderB(Container container, float minimum, float maximum, float current, String name) {
         this.container = container;
@@ -36,7 +36,6 @@ public class SliderB extends JSlider {
         setupLabel(name);
         setMinorTickSpacing((int) ((getMaximum() - getMinimum()) / SLIDER_MINOR_SPACINGS_NUMBER.getValue()));
         setMajorTickSpacing((int) (getMaximum() - getMinimum() / SLIDER_MAJOR_SPACINGS_NUMBER.getValue()));
-
         addChangeListener(e -> repaint());
     }
 

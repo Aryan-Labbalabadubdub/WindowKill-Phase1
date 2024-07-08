@@ -1,4 +1,4 @@
-package view.menu;
+package view.containers;
 
 import view.Utils;
 
@@ -105,6 +105,6 @@ public class ButtonB extends JButton {
     }
 
     public enum ButtonType {
-        menu_button, small_menu_button, small_field_button, category0, category1, category2, category3, skill_unlocked, skill_locked, active_skill
+        menu_button, small_menu_button, small_field_button, category0, category1, category2, category3, acquired_skill, unacquired_skill, active_skill
     }
 }

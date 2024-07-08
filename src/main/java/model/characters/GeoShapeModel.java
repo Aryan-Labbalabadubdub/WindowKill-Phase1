@@ -1,7 +1,7 @@
-package model.characterModels;
+package model.characters;
 
 import model.collision.Collidable;
-import model.entityModel.Entity;
+import model.entities.Entity;
 import model.movement.Movable;
 import model.movement.Movement;
 import org.locationtech.jts.geom.Coordinate;
@@ -9,8 +9,8 @@ import org.locationtech.jts.geom.Geometry;
 import org.locationtech.jts.geom.GeometryFactory;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static controller.UserInterfaceController.moveGeoShape;
 import static controller.UserInterfaceController.rotateGeoShape;
@@ -19,18 +19,18 @@ import static controller.constants.DefaultMethods.sinTable;
 import static model.Utils.*;
 
 public class GeoShapeModel extends Entity implements Collidable, Movable {
-    public volatile static ArrayList<GeoShapeModel> allShapeModelsList = new ArrayList<>();
+    public volatile static CopyOnWriteArrayList<GeoShapeModel> allShapeModelsList = new CopyOnWriteArrayList<>();
     public boolean isCircular;
     public String modelId;
     public Point2D anchorSave;
-    public ArrayList<Point2D> vertices;
-    public ArrayList<Point2D> verticesSave;
+    public CopyOnWriteArrayList<Point2D> vertices;
+    public CopyOnWriteArrayList<Point2D> verticesSave;
     public Movement movement;
     public String motionPanelId;
     double totalRotation = 0;
     Geometry geometry;
 
-    public GeoShapeModel(Point2D anchor, ArrayList<Point2D> vertices, int health) {
+    public GeoShapeModel(Point2D anchor, CopyOnWriteArrayList<Point2D> vertices, int health) {
         setVerticesSave(vertices);
         this.fullHealth = health;
         this.health = health;
@@ -43,7 +43,7 @@ public class GeoShapeModel extends Entity implements Collidable, Movable {
 
     public void placeVertices(int n) {
         if (isCircular) {
-            ArrayList<Point2D> newVertices = new ArrayList<>();
+            CopyOnWriteArrayList<Point2D> newVertices = new CopyOnWriteArrayList<>();
             float step = 360f / n;
             for (int i = 0; i < n; i++) {
                 float angleModified = step * i;
@@ -60,7 +60,7 @@ public class GeoShapeModel extends Entity implements Collidable, Movable {
         if (isCircular) placeVertices(verticesSave.size() + 1);
     }
 
-    public void setVerticesSave(ArrayList<Point2D> verticesSave) {
+    public void setVerticesSave(CopyOnWriteArrayList<Point2D> verticesSave) {
         this.vertices = deepCloneList(verticesSave);
         this.verticesSave = deepCloneList(verticesSave);
         createGeometry();
@@ -103,6 +103,7 @@ public class GeoShapeModel extends Entity implements Collidable, Movable {
 
     @Override
     public float getRadius() {
+        if (anchorSave == null) return 0;
         return (float) anchorSave.getX();
     }
 

@@ -10,8 +10,8 @@ import org.locationtech.jts.geom.LineSegment;
 import org.locationtech.jts.operation.distance.DistanceOp;
 
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static controller.constants.ImpactConstants.COLLISION_SENSITIVITY;
 import static controller.constants.ImpactConstants.DETECTION_SENSITIVITY;
@@ -20,13 +20,13 @@ import static model.Utils.*;
 
 public interface Collidable {
 
-    ArrayList<Collidable> collidables = new ArrayList<>();
+    CopyOnWriteArrayList<Collidable> collidables = new CopyOnWriteArrayList<>();
 
     /**
      * Creates current geometry for all the collidables
      */
     static void CreateAllGeometries() {
-        for (Collidable collidable : new ArrayList<>(Collidable.collidables)) collidable.createGeometry();
+        for (Collidable collidable : collidables) collidable.createGeometry();
     }
 
     static Coordinate getClosestCoordinate(Coordinate anchor, Geometry geometry) {
@@ -47,6 +47,12 @@ public interface Collidable {
 
     float getSpeed();
 
+    /**
+     * <p>Note: Collisions only occur if both collidables agree on it
+     *
+     * @param collidable second collidable of the collision
+     * @return whether {@code this} agrees on the collision
+     */
     boolean collide(Collidable collidable);
 
     long getPositionUpdateTimeDiffCapture();
@@ -84,12 +90,12 @@ public interface Collidable {
             if (segment.getLength() <= COLLISION_SENSITIVITY.getValue()) collisionPoint = toPoint(segment.midPoint());
             else return null;
         }
-        ArrayList<?> motionState = analyzeMotion(collidable, collisionPoint);
+        CopyOnWriteArrayList<?> motionState = analyzeMotion(collidable, collisionPoint);
         if (motionState == null) return null;
         return new CollisionState(motionState);
     }
 
-    default ArrayList<?> analyzeMotion(Collidable collidable, Point2D collisionPoint) {
+    default CopyOnWriteArrayList<?> analyzeMotion(Collidable collidable, Point2D collisionPoint) {
         Direction direction1 = new Direction(new Point2D.Float(0, 0));
         Direction direction2 = new Direction(new Point2D.Float(0, 0));
         float rotationalTorque1 = 0;
@@ -114,7 +120,7 @@ public interface Collidable {
         rotationalTorque1 = Math.abs(rotationalTorque1) >= MAX_SAFE_ROTATION.getValue() ? (MAX_SAFE_ROTATION.getValue() * Math.signum(rotationalTorque1)) : rotationalTorque1;
         rotationalTorque2 = Math.abs(rotationalTorque2) >= MAX_SAFE_ROTATION.getValue() ? (MAX_SAFE_ROTATION.getValue() * Math.signum(rotationalTorque2)) : rotationalTorque2;
 
-        return new ArrayList<>(List.of(collisionPoint, this, collidable, direction1, direction2, rotationalTorque1, rotationalTorque2, scale1, scale2));
+        return new CopyOnWriteArrayList<>(List.of(collisionPoint, this, collidable, direction1, direction2, rotationalTorque1, rotationalTorque2, scale1, scale2));
     }
 
     /**

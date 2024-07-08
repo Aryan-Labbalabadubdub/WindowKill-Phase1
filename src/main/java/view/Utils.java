@@ -4,8 +4,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.IntStream;
 
 import static model.Utils.rotateAbout;
@@ -65,8 +65,8 @@ public class Utils {
         Point[] corners = new Point[]{new Point(0, 0), new Point(viewSize.width, 0), new Point(0, viewSize.height), new Point(viewSize.width, viewSize.height)};
         Point[] rotatedCorners = new Point[4];
         for (int i = 0; i < corners.length; i++) rotatedCorners[i] = (Point) rotateAbout(corners[i], relativeAnchor, angle);
-        ArrayList<Integer> rotatedCornersX = new ArrayList<>();
-        ArrayList<Integer> rotatedCornersY = new ArrayList<>();
+        CopyOnWriteArrayList<Integer> rotatedCornersX = new CopyOnWriteArrayList<>();
+        CopyOnWriteArrayList<Integer> rotatedCornersY = new CopyOnWriteArrayList<>();
         for (Point point : rotatedCorners) {
             rotatedCornersX.add(point.x);
             rotatedCornersY.add(point.y);
@@ -77,5 +77,23 @@ public class Utils {
         int yUpper = Collections.max(rotatedCornersY);
 
         return new Point[]{new Point(xUpper - xLower + 1, yUpper - yLower + 1), new Point(-xLower, -yLower)};
+    }
+
+    public static Color averageTone(BufferedImage image) {
+        if (image == null) return new Color(0, 0, 0, 0);
+        int sumR = 0, sumG = 0, sumB = 0, cnt = 0;
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                if ((image.getRGB(i, j) >> 24) != 0x00) {
+                    Color pointColor = new Color(image.getRGB(i, j));
+                    sumR += pointColor.getRed();
+                    sumG += pointColor.getGreen();
+                    sumB += pointColor.getBlue();
+                    cnt++;
+                }
+            }
+        }
+        if (cnt == 0) return new Color(0, 0, 0, 0);
+        return new Color(sumR / cnt, sumG / cnt, sumB / cnt);
     }
 }

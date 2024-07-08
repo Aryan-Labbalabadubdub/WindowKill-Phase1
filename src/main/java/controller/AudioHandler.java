@@ -1,5 +1,7 @@
 package controller;
 
+import model.Profile;
+
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
@@ -7,18 +9,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static controller.constants.DefaultMethods.getVolumeDB;
 import static controller.constants.FilePaths.*;
-import static controller.constants.Variables.SOUND_SCALE;
 
 public abstract class AudioHandler {
-    public static HashMap<Clip, SoundEffectType> clips = new HashMap<>();
+    public static final ConcurrentHashMap<Clip, SoundEffectType> clips = new ConcurrentHashMap<>();
+
     public static synchronized float playSoundEffect(SoundEffectType type, int i) {
         ClipControlled clipControlled = playSoundEffect(getSoundEffectPath(type, i));
         clips.put(clipControlled.clip, type);
@@ -96,9 +97,10 @@ public abstract class AudioHandler {
             case COUNTDOWN -> COUNTDOWN_EFFECTS_PATH.getValue();
             case MENU_THEME -> MENU_THEME_PATH.getValue();
             case GAME_THEME -> GAME_THEME_PATH.getValue();
+            case XP -> XP_SOUND_EFFECTS_PATH.getValue();
         };
         int numberOfEffects = switch (type) {
-            case HIT, DOWN, SHOOT, COUNTDOWN -> Objects.requireNonNull(new File(address).list()).length;
+            case HIT, DOWN, SHOOT, COUNTDOWN, XP -> Objects.requireNonNull(new File(address).list()).length;
             case MENU_THEME, GAME_THEME -> -1;
         };
         if (numberOfEffects == -1) return address;
@@ -108,19 +110,19 @@ public abstract class AudioHandler {
     public static void setVolume(Clip clip) {
         if (clip == null) return;
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        float volume = getVolumeDB(clip) * SOUND_SCALE;
+        float volume = getVolumeDB(clip) * Profile.getCurrent().SOUND_SCALE;
         gainControl.setValue(20f * (float) Math.log10(volume));
     }
 
     public static void setAllVolumes() {
-        for (Clip clip : new ArrayList<>(clips.keySet())) {
+        for (Clip clip : clips.keySet()) {
             if (!clip.isRunning()) clips.remove(clip);
             else setVolume(clip);
         }
     }
 
     public enum SoundEffectType {
-        HIT, DOWN, SHOOT, COUNTDOWN, MENU_THEME, GAME_THEME
+        HIT, DOWN, SHOOT, COUNTDOWN, MENU_THEME, GAME_THEME, XP
     }
 
     public static class ClipControlled {

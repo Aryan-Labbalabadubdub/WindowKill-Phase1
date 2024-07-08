@@ -1,4 +1,4 @@
-package model.entityModel;
+package model.entities;
 
 public enum AttackTypes {
     RANGED, MELEE

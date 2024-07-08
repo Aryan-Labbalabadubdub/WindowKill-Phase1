@@ -122,6 +122,7 @@ public final class UserInputHandler {
                 }
             }
         }
+
         public enum MovementDirection {MOVE_UP, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, SHOOT, PAUSE, SKILL}
     }
 }

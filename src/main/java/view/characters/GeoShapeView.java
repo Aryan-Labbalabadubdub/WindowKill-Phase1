@@ -1,21 +1,26 @@
-package view.charaterViews;
+package view.characters;
 
 import view.Utils;
 import view.containers.MotionPanelView;
 import view.containers.RotatedIcon;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static model.Utils.relativeLocation;
 import static view.Utils.rotatedInfo;
 
 public class GeoShapeView {
-    public volatile static ArrayList<GeoShapeView> allShapeViewsList = new ArrayList<>();
+    public volatile static CopyOnWriteArrayList<GeoShapeView> allShapeViewsList = new CopyOnWriteArrayList<>();
+    public volatile static ConcurrentHashMap<String, BufferedImage> rawImageHashMap = new ConcurrentHashMap<>();
     public String viewId;
     public RotatedIcon rotatedIcon;
-    public ArrayList<Point> vertexLocations = new ArrayList<>();
+    public CopyOnWriteArrayList<Point> vertexLocations = new CopyOnWriteArrayList<>();
     Dimension viewSize;
     Point relativeAnchorLocation;
     boolean isCircular;
@@ -32,13 +37,13 @@ public class GeoShapeView {
         motionPanelView.shapeViews.add(this);
     }
 
-    public void shrinkView(float scale) {
-//        Dimension newSize=new Dimension((int) (viewSize.width*scale), (int) (viewSize.height*scale));
-//        if (newSize.width<=0 || newSize.height<=0) return;
-//        this.relativeAnchorLocation=roundPoint(multiplyPoint(relativeAnchorLocation,scale));
-//        this.viewSize=newSize;
-//        BufferedImage resized= Utils.toBufferedImage(image.getScaledInstance(viewSize.width,viewSize.height,Image.SCALE_SMOOTH));
-//        this.rotatedIcon =new RotatedIcon(Utils.bufferedImageClone(resized),new Point(relativeAnchorLocation),0,isCircular);
+    public static BufferedImage getRawImage(String imagePath) {
+        try {
+            if (!rawImageHashMap.containsKey(imagePath)) rawImageHashMap.put(imagePath, ImageIO.read(new File(imagePath)));
+            return rawImageHashMap.get(imagePath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void moveShapeView(Point newAnchorLocation) {
@@ -60,9 +65,5 @@ public class GeoShapeView {
 
     public void setViewId(String viewId) {
         this.viewId = viewId;
-    }
-
-    public RotatedIcon getRotatedIcon() {
-        return rotatedIcon;
     }
 }

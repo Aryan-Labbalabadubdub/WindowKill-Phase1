@@ -1,13 +1,13 @@
 package model.movement;
 
 import controller.TypedActionListener;
-import model.characterModels.GeoShapeModel;
+import model.characters.GeoShapeModel;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static controller.UserInterfaceController.findModel;
 import static controller.constants.ImpactConstants.*;
@@ -15,6 +15,7 @@ import static controller.constants.MovementConstants.*;
 import static model.Utils.*;
 
 public class Movement {
+    private final CopyOnWriteArrayList<ActionListener> moveListeners = new CopyOnWriteArrayList<>();
     public Point2D lastAnchor = new Point2D.Float(0, 0);
     public long lastAnchorUpdateTime = System.nanoTime();
     public long positionUpdateTimeDiffCapture = 0;
@@ -28,7 +29,6 @@ public class Movement {
     String modelId;
     Point2D target = null;
     String targetModelId = null;
-    private final ArrayList<ActionListener> moveListeners = new ArrayList<>();
 
     public Movement(String modelId, Point2D anchor) {
         this.modelId = modelId;
@@ -51,7 +51,7 @@ public class Movement {
 
     public void move() {
         GeoShapeModel model = findModel(modelId);
-        assert model != null;
+        if (model == null) return;
         model.moveShapeModel(getAnchor());
     }
 
@@ -59,7 +59,7 @@ public class Movement {
         if (targetModelId != null) lockOnTarget(targetModelId);
         else if (target != null) lockOnTarget(target);
         GeoShapeModel model = findModel(modelId);
-        assert model != null;
+        if (model == null) return;
         Point2D destination = addUpPoints(getAnchor(), multiplyPoint(direction.getDirectionVector(), speed));
         if (!model.crossesUnmovable(destination)) setAnchor(destination);
     }
@@ -74,7 +74,7 @@ public class Movement {
 
     public void rotate() {
         GeoShapeModel model = findModel(modelId);
-        assert model != null;
+        if (model == null) return;
         model.rotateShapeModel(angularSpeed);
     }
 
@@ -154,7 +154,7 @@ public class Movement {
         }
     }
 
-    public ArrayList<ActionListener> getMoveListeners() {
+    public CopyOnWriteArrayList<ActionListener> getMoveListeners() {
         return moveListeners;
     }
 

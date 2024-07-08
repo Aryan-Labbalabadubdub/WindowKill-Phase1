@@ -1,42 +1,47 @@
 package controller.constants;
 
+import model.Profile;
+
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static controller.constants.DimensionConstants.*;
 
 public enum EntityConstants {
-    EPSILON_HEALTH, SHOTS_PER_SECOND, SKILL_COOLDOWN_IN_MINUTES,
-    TRIGORATH_HEALTH, TRIGORATH_MELEE_DAMAGE, SQUARANTINE_HEALTH, SQUARANTINE_MELEE_DAMAGE, BULLET_HEALTH;
+    EPSILON_HEALTH, SHOTS_PER_SECOND, SKILL_COOLDOWN_IN_MINUTES, COLLECTIBLE_LIFE_TIME, EPSILON_RAPID_SHOOTING_DELAY, EPSILON_SHOOTING_RAPIDITY,
+    TRIGORATH_HEALTH, TRIGORATH_MELEE_DAMAGE, SQUARANTINE_HEALTH, SQUARANTINE_MELEE_DAMAGE, BULLET_HEALTH, COLLECTIBLE_HEALTH;
 
     public int getValue() {
         return switch (this) {
+            case EPSILON_SHOOTING_RAPIDITY -> Profile.getCurrent().EPSILON_SHOOTING_RAPIDITY;
             case EPSILON_HEALTH -> 100;
             case SHOTS_PER_SECOND -> 2;
             case SKILL_COOLDOWN_IN_MINUTES -> 5;
+            case EPSILON_RAPID_SHOOTING_DELAY -> 50;
             case TRIGORATH_HEALTH -> 15;
             case TRIGORATH_MELEE_DAMAGE -> 10;
             case SQUARANTINE_HEALTH -> 10;
             case SQUARANTINE_MELEE_DAMAGE -> 6;
-            case BULLET_HEALTH -> 0;
+            case BULLET_HEALTH, COLLECTIBLE_HEALTH -> 0;
+            case COLLECTIBLE_LIFE_TIME -> 8;
         };
     }
 
     public enum EntityVertices {
-        TRIGORATH_VERTICES, SQUARANTINE_VERTICES, BULLET_VERTICES;
+        TRIGORATH_VERTICES, SQUARANTINE_VERTICES, BULLET_VERTICES, EPSILON_VERTICES, COLLECTIBLE_VERTICES;
 
-        public ArrayList<Point2D> getValue() {
+        public CopyOnWriteArrayList<Point2D> getValue() {
             return switch (this) {
 
-                case TRIGORATH_VERTICES -> new ArrayList<>(
+                case TRIGORATH_VERTICES -> new CopyOnWriteArrayList<>(
                         List.of(new Point2D.Float(0, 0), new Point2D.Float(0, TRIGORATH_DIMENSION.getValue().height),
                                 new Point2D.Float(TRIGORATH_DIMENSION.getValue().width, TRIGORATH_DIMENSION.getValue().height / 2F)));
-                case SQUARANTINE_VERTICES -> new ArrayList<>(
+                case SQUARANTINE_VERTICES -> new CopyOnWriteArrayList<>(
                         List.of(new Point2D.Float(0, 0), new Point2D.Float(0, SQUARANTINE_DIMENSION.getValue().height),
                                 new Point2D.Float(SQUARANTINE_DIMENSION.getValue().width, SQUARANTINE_DIMENSION.getValue().height),
                                 new Point2D.Float(SQUARANTINE_DIMENSION.getValue().width, 0)));
-                case BULLET_VERTICES -> new ArrayList<>();
+                case BULLET_VERTICES, EPSILON_VERTICES, COLLECTIBLE_VERTICES -> new CopyOnWriteArrayList<>();
             };
         }
     }

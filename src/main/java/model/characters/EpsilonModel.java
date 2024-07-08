@@ -1,19 +1,25 @@
-package model.characterModels;
+package model.characters;
 
 import controller.UserInputHandler;
+import model.Profile;
 import model.collision.Collidable;
-import model.entityModel.AttackTypes;
+import model.entities.AttackTypes;
 import model.movement.Direction;
-import model.projectileModels.Long_Ranged;
+import model.projectiles.Long_Ranged;
+import view.menu.MainMenu;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.Point2D;
+import java.util.concurrent.TimeUnit;
 
 import static controller.UserInputHandler.getMouseLocation;
 import static controller.UserInterfaceController.*;
 import static controller.constants.EntityConstants.EPSILON_HEALTH;
+import static controller.constants.EntityConstants.EPSILON_SHOOTING_RAPIDITY;
+import static controller.constants.EntityConstants.EntityVertices.EPSILON_VERTICES;
 import static controller.constants.EntityConstants.PointConstants.EPSILON_CENTER;
 import static controller.constants.MovementConstants.EPSILON_SPEED;
-import static controller.constants.Variables.*;
 import static model.Utils.*;
 
 public final class EpsilonModel extends GeoShapeModel implements Long_Ranged {
@@ -23,18 +29,20 @@ public final class EpsilonModel extends GeoShapeModel implements Long_Ranged {
     public static boolean MOVE_RIGHT_IND_SAVE;
     public static boolean SHOOT_IND_SAVE;
     private static EpsilonModel INSTANCE;
+    private int shootingRapidity = EPSILON_SHOOTING_RAPIDITY.getValue();
 
     private EpsilonModel(String motionPanelId) {
-        super(new Point(0, 0), EPSILON_VERTICES, EPSILON_HEALTH.getValue());
+        super(new Point(0, 0), EPSILON_VERTICES.getValue(), EPSILON_HEALTH.getValue());
         this.isCircular = true;
         this.motionPanelId = motionPanelId;
         this.anchorSave = deepClone(EPSILON_CENTER.getValue());
         assert anchorSave != null;
         createEpsilon(modelId, roundPoint(anchorSave), motionPanelId);
-        moveShapeModel(getMotionPanelCenterLocation(getMainMotionPanelId()));
-        movement.setAnchor(getMotionPanelCenterLocation(getMainMotionPanelId()));
-        damageSize.put(AttackTypes.MELEE, EPSILON_MELEE_DAMAGE);
-        damageSize.put(AttackTypes.RANGED, EPSILON_RANGED_DAMAGE);
+        Point2D anchor = getMotionPanelCenterLocation(getMainMotionPanelId());
+        moveShapeModel(anchor);
+        movement.setAnchor(anchor);
+        damageSize.put(AttackTypes.MELEE, Profile.getCurrent().EPSILON_MELEE_DAMAGE);
+        damageSize.put(AttackTypes.RANGED, Profile.getCurrent().EPSILON_RANGED_DAMAGE);
         activateMovement();
     }
 
@@ -45,6 +53,18 @@ public final class EpsilonModel extends GeoShapeModel implements Long_Ranged {
 
     public static void flushINSTANCE() {
         INSTANCE = null;
+    }
+
+    @Override
+    public void eliminate() {
+        super.eliminate();
+        new Timer((int) TimeUnit.NANOSECONDS.toMillis((long) showMessage(-1)), e -> {
+            exitGame();
+            MainMenu.flushINSTANCE();
+            MainMenu.getINSTANCE().togglePanel();
+        }) {{
+            setRepeats(false);
+        }}.start();
     }
 
     public void activateMovement() {
@@ -121,5 +141,15 @@ public final class EpsilonModel extends GeoShapeModel implements Long_Ranged {
     @Override
     public String getMotionPanelId() {
         return motionPanelId;
+    }
+
+    @Override
+    public int getShootingRapidity() {
+        return shootingRapidity;
+    }
+
+    @Override
+    public void setShootingRapidity(int shootingRapidity) {
+        this.shootingRapidity = shootingRapidity;
     }
 }

@@ -1,4 +1,4 @@
-package view.menu;
+package view.containers;
 
 import view.Utils;
 
@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import static controller.constants.DimensionConstants.SCREEN_SIZE;
 import static controller.constants.FilePaths.MENU_IMAGEPATH;
@@ -61,6 +63,21 @@ public class PanelB extends JPanel {
             constraints.gridx = 0;
         }
         add(component, constraints);
+    }
+
+    public void bulkAdd(CopyOnWriteArrayList<Component> components, int itemsPerRow) {
+        while (!components.isEmpty()) {
+            List<Component> rowItems = components.subList(0, Math.min(components.size(), itemsPerRow));
+            float preferredAspectRatio = (float) rowItems.get(0).getPreferredSize().height / rowItems.get(0).getPreferredSize().width;
+            PanelB temp = new PanelB(new Dimension(getWidth(), (int) (preferredAspectRatio * getWidth()))) {{
+                setVisible(true);
+            }};
+            temp.horizontalBulkAdd(rowItems);
+            add(temp, false, false);
+            components.removeAll(rowItems);
+            constraints.gridx = 0;
+            constraints.gridy++;
+        }
     }
 
     public void verticalBulkAdd(Collection<Component> components) {

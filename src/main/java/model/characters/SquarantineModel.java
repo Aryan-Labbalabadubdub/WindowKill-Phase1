@@ -1,6 +1,6 @@
-package model.characterModels;
+package model.characters;
 
-import model.entityModel.AttackTypes;
+import model.entities.AttackTypes;
 
 import java.awt.*;
 
@@ -21,5 +21,7 @@ public class SquarantineModel extends GeoShapeModel {
         createSquarantine(modelId, roundPoint(anchorSave), motionPanelId);
         moveShapeModel(anchor);
         movement.setAnchor(anchor);
+        numberOfCollectibles = 1;
+        collectibleValue = 5;
     }
 }

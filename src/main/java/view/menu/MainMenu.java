@@ -1,9 +1,13 @@
 package view.menu;
 
+import view.containers.ButtonB;
+import view.containers.PanelB;
+
 import javax.swing.*;
 import java.util.List;
 
-import static controller.UserInterfaceController.*;
+import static controller.UserInterfaceController.playMenuTheme;
+import static controller.UserInterfaceController.toggleGameRunning;
 import static controller.constants.DimensionConstants.MAIN_MENU_DIMENSION;
 import static controller.constants.UIConstants.MENU_BUTTON_WIDTH;
 import static controller.constants.UIMessageConstants.*;
@@ -39,13 +43,14 @@ public final class MainMenu extends PanelB {
         ButtonB exit = new ButtonB(ButtonB.ButtonType.menu_button, "EXIT", (int) MENU_BUTTON_WIDTH.getValue(), true) {{
             addActionListener(e -> {
                 if (JOptionPane.showConfirmDialog(getINSTANCE(), EXIT_MESSAGE.getValue(), EXIT_TITLE.getValue(), JOptionPane.YES_NO_OPTION)
-                        == JOptionPane.YES_OPTION) safeExitGame();
+                        == JOptionPane.YES_OPTION) System.exit(0);
             });
         }};
         verticalBulkAdd(List.of(start, settings, skillTree, tutorial, exit));
     }
 
     public static void flushINSTANCE() {
+        PauseMenu.getINSTANCE().setVisible(false);
         INSTANCE = null;
     }
 

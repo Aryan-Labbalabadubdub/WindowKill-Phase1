@@ -1,8 +1,8 @@
 package controller.constants;
 
-import java.util.concurrent.TimeUnit;
+import model.Profile;
 
-import static controller.constants.Variables.*;
+import java.util.concurrent.TimeUnit;
 
 public enum MovementConstants {
     EPSILON_SPEED, ANGULAR_SPEED_BOUND, DEFAULT_ANGULAR_DECAY,
@@ -11,17 +11,18 @@ public enum MovementConstants {
 
     public float getValue() {
         return switch (this) {
-            case EPSILON_SPEED -> SIZE_SCALE * GAME_SPEED * 80f / UPS;
-            case ANGULAR_SPEED_BOUND -> 400f / UPS;
-            case DEFAULT_ANGULAR_DECAY -> 1 - (0.5f * SIZE_SCALE * GAME_SPEED / UPS);
-            case MAX_SAFE_ROTATION -> 240f / UPS;
-            case DEFAULT_SPEED -> SIZE_SCALE * GAME_SPEED * 30f / UPS;
-            case BULLET_SPEED -> SIZE_SCALE * GAME_SPEED * 300f / UPS;
-            case DEFAULT_DECELERATION -> SIZE_SCALE * GAME_SPEED * (-10f) / (UPS * UPS);
-            case DECELERATION_DECAY -> 1 - (2f * SIZE_SCALE * GAME_SPEED / UPS);
-            case DECELERATION_SENSITIVITY -> 0.000001f / UPS;
-            case DAMPEN_FACTOR -> 1 + GAME_SPEED * 0.015f;
-            case POSITION_UPDATE_INTERVAL -> TimeUnit.SECONDS.toNanos(1) / (GAME_SPEED * UPS);
+            case EPSILON_SPEED -> Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED * 80f / Profile.getCurrent().UPS;
+            case ANGULAR_SPEED_BOUND -> 400f / Profile.getCurrent().UPS;
+            case DEFAULT_ANGULAR_DECAY -> 1 - (0.5f * Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED / Profile.getCurrent().UPS);
+            case MAX_SAFE_ROTATION -> 240f / Profile.getCurrent().UPS;
+            case DEFAULT_SPEED -> Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED * 30f / Profile.getCurrent().UPS;
+            case BULLET_SPEED -> Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED * 300f / Profile.getCurrent().UPS;
+            case DEFAULT_DECELERATION ->
+                    Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED * (-10f) / (Profile.getCurrent().UPS * Profile.getCurrent().UPS);
+            case DECELERATION_DECAY -> 1 - (2f * Profile.getCurrent().SIZE_SCALE * Profile.getCurrent().GAME_SPEED / Profile.getCurrent().UPS);
+            case DECELERATION_SENSITIVITY -> 0.000001f / Profile.getCurrent().UPS;
+            case DAMPEN_FACTOR -> 1 + Profile.getCurrent().GAME_SPEED * 0.015f;
+            case POSITION_UPDATE_INTERVAL -> TimeUnit.SECONDS.toNanos(1) / (Profile.getCurrent().GAME_SPEED * Profile.getCurrent().UPS);
         };
     }
 }

@@ -9,18 +9,22 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Utils {
+    public static boolean areInstancesOf(Object object1, Object object2, Class<?> class1, Class<?> class2) {
+        return (class1.isInstance(object1) && class2.isInstance(object2)) || (class2.isInstance(object1) && class1.isInstance(object2));
+    }
+
     /**
      * @param collection a collection of type {@code T} to be cloned
      * @param <T>        generic class type
-     * @return deep cloned Arraylist. All objects are cloned via {@link #deepClone(Object)} method
+     * @return deep cloned thread-safe Arraylist. All objects are cloned via {@link #deepClone(Object)} method
      */
-    public static <T> ArrayList<T> deepCloneList(Collection<T> collection) {
+    public static <T> CopyOnWriteArrayList<T> deepCloneList(Collection<T> collection) {
         if (collection == null) return null;
-        ArrayList<T> output = new ArrayList<>();
+        CopyOnWriteArrayList<T> output = new CopyOnWriteArrayList<>();
         for (T t : collection) output.add(deepClone(t));
         return output;
     }

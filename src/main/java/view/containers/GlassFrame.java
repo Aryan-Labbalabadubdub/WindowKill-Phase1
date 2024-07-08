@@ -1,7 +1,5 @@
 package view.containers;
 
-import view.menu.TopMessage;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -46,7 +44,4 @@ public final class GlassFrame extends JFrame {
         return INSTANCE;
     }
 
-    public void showMessage(TopMessage.MessageType type) {
-        new TopMessage(type);
-    }
 }

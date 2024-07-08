@@ -11,8 +11,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
 import java.util.UUID;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static controller.UserInterfaceController.createMotionPanel;
@@ -24,8 +24,8 @@ import static model.Utils.*;
 
 public class MotionPanelModel implements Collidable {
     public volatile static MotionPanelModel mainMotionPanelModel;
-    public volatile static ArrayList<MotionPanelModel> allMotionPanelModelsList = new ArrayList<>();
-    public ArrayList<ActionListener> deformationListeners = new ArrayList<>();
+    public volatile static CopyOnWriteArrayList<MotionPanelModel> allMotionPanelModelsList = new CopyOnWriteArrayList<>();
+    public CopyOnWriteArrayList<ActionListener> deformationListeners = new CopyOnWriteArrayList<>();
     public String modelId;
     public Point2D location;
     public long lastPositionUpdateTime = System.nanoTime();

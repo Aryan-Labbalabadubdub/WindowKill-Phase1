@@ -1,6 +1,6 @@
-package model.characterModels;
+package model.characters;
 
-import model.entityModel.AttackTypes;
+import model.entities.AttackTypes;
 
 import java.awt.*;
 
@@ -20,5 +20,7 @@ public class TrigorathModel extends GeoShapeModel {
         createTrigorath(modelId, roundPoint(anchorSave), motionPanelId);
         moveShapeModel(anchor);
         movement.setAnchor(anchor);
+        numberOfCollectibles = 2;
+        collectibleValue = 5;
     }
 }

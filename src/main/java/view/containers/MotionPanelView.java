@@ -1,20 +1,20 @@
 package view.containers;
 
-import view.charaterViews.GeoShapeView;
-import view.menu.PanelB;
+import view.characters.GeoShapeView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-import static controller.constants.ViewConstants.VERTEX_OFFSET;
+import static controller.UserInterfaceController.isGameOn;
+import static controller.constants.DefaultMethods.getCenterOffset;
 import static controller.constants.ViewConstants.VERTEX_RADIUS;
 import static view.containers.GlassFrame.getGlassFrame;
 
 public class MotionPanelView extends PanelB {
     public volatile static MotionPanelView mainMotionPanelView;
-    public volatile static ArrayList<MotionPanelView> allMotionPanelViewsList = new ArrayList<>();
-    public volatile ArrayList<GeoShapeView> shapeViews = new ArrayList<>();
+    public volatile static CopyOnWriteArrayList<MotionPanelView> allMotionPanelViewsList = new CopyOnWriteArrayList<>();
+    public volatile CopyOnWriteArrayList<GeoShapeView> shapeViews = new CopyOnWriteArrayList<>();
     public String viewId;
 
     public MotionPanelView(Dimension size, Point location) {
@@ -32,11 +32,13 @@ public class MotionPanelView extends PanelB {
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Color.white);
-        for (GeoShapeView shapeView : new ArrayList<>(shapeViews)) {
+        for (GeoShapeView shapeView : shapeViews) {
             shapeView.rotatedIcon.paintIcon(this, g, 0, 0);
-            for (Point point : shapeView.vertexLocations) {
-                g.fillOval((int) (point.x - VERTEX_OFFSET.getValue()), (int) (point.y - VERTEX_OFFSET.getValue()),
-                        (int) VERTEX_RADIUS.getValue(), (int) VERTEX_RADIUS.getValue());
+            if (isGameOn()) {
+                for (Point point : shapeView.vertexLocations) {
+                    g.fillOval((int) (point.x - getCenterOffset(VERTEX_RADIUS.getValue())), (int) (point.y - getCenterOffset(VERTEX_RADIUS.getValue())),
+                            (int) VERTEX_RADIUS.getValue(), (int) VERTEX_RADIUS.getValue());
+                }
             }
         }
     }

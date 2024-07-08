@@ -1,32 +1,35 @@
 package controller;
 
+import model.JsonOperator;
 import model.MotionPanelModel;
-import model.characterModels.EpsilonModel;
-import model.characterModels.GeoShapeModel;
+import model.Profile;
+import model.characters.EpsilonModel;
+import model.characters.GeoShapeModel;
 import model.collision.Collidable;
-import model.entityModel.Skill;
-import view.BulletView;
-import view.charaterViews.EpsilonView;
-import view.charaterViews.GeoShapeView;
-import view.charaterViews.SquarantineView;
-import view.charaterViews.TrigorathView;
+import model.entities.Ability;
+import model.entities.Skill;
+import org.apache.commons.lang3.tuple.MutablePair;
+import org.apache.commons.lang3.tuple.Pair;
+import view.characters.*;
 import view.containers.MotionPanelView;
+import view.menu.Message;
 
 import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Point2D;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static controller.AudioHandler.clips;
 import static model.MotionPanelModel.allMotionPanelModelsList;
 import static model.MotionPanelModel.mainMotionPanelModel;
 import static model.Utils.*;
-import static model.characterModels.GeoShapeModel.allShapeModelsList;
-import static view.charaterViews.GeoShapeView.allShapeViewsList;
+import static model.characters.GeoShapeModel.allShapeModelsList;
+import static view.characters.GeoShapeView.allShapeViewsList;
 import static view.containers.MotionPanelView.allMotionPanelViewsList;
 import static view.containers.MotionPanelView.mainMotionPanelView;
 
@@ -46,6 +49,11 @@ public abstract class UserInterfaceController {
         view.setViewId(modelId);
     }
 
+    public static void createCollectible(String modelId, String ancestorId, int value, Point anchor, String motionPanelId) {
+        CollectibleView collectibleView = new CollectibleView(anchor, value, findView(ancestorId), findMotionPanelView(motionPanelId));
+        collectibleView.setViewId(modelId);
+    }
+
     public static void createBullet(String modelId, Point referenceAnchor, String motionPanelId) {
         BulletView view = new BulletView(referenceAnchor, findMotionPanelView(motionPanelId));
         view.setViewId(modelId);
@@ -61,11 +69,16 @@ public abstract class UserInterfaceController {
         GeoShapeView shapeView = findView(modelId);
         assert shapeView != null;
         allShapeViewsList.remove(shapeView);
-        Objects.requireNonNull(findMotionPanelView(motionPanelId)).shapeViews.remove(shapeView);
+        MotionPanelView motionPanelView = findMotionPanelView(motionPanelId);
+        if (motionPanelView != null) motionPanelView.shapeViews.remove(shapeView);
     }
 
     public static void fireSkill() {
         if (Skill.activeSkill != null) Skill.activeSkill.fire();
+    }
+
+    public static boolean isGameOn() {
+        return GameLoop.getINSTANCE().isOn();
     }
 
     public static boolean isGameRunning() {
@@ -78,6 +91,7 @@ public abstract class UserInterfaceController {
 
     public static void exitGame() {
         GameLoop.getINSTANCE().forceExitGame();
+        GameLoop.getINSTANCE().toggleGameLoop();
         EpsilonModel.flushINSTANCE();
         for (MotionPanelView motionPanelView : allMotionPanelViewsList) {
             motionPanelView.shapeViews.clear();
@@ -110,6 +124,10 @@ public abstract class UserInterfaceController {
         AudioHandler.playSoundEffect(AudioHandler.SoundEffectType.DOWN);
     }
 
+    public static void playXPSoundEffect() {
+        AudioHandler.playSoundEffect(AudioHandler.SoundEffectType.XP);
+    }
+
     public static void playShootSoundEffect() {
         AudioHandler.playSoundEffect(AudioHandler.SoundEffectType.SHOOT);
     }
@@ -118,57 +136,62 @@ public abstract class UserInterfaceController {
         return AudioHandler.playSoundEffect(AudioHandler.SoundEffectType.COUNTDOWN, i);
     }
 
-    public static void safeExitGame() {
-        for (Clip clip : new ArrayList<>(clips.keySet())) {
+    public static void safeExitApplication() {
+        for (Clip clip : clips.keySet()) {
             clip.stop();
             clips.remove(clip);
         }
-        System.exit(0);
+        JsonOperator.proceedToSaveLoad = false;
     }
 
-    public static HashMap<String, Integer> getSkillCategoryInfo() {
-        HashMap<String, Integer> out = new HashMap<>();
+    /**
+     * @return a thread-safe hashmap mapping to every skill category name (as key), a pair (as value)
+     * <p>
+     * of name of all skills in that category and number of acquired skills in that category
+     * </p>
+     */
+    public static ConcurrentHashMap<String, Pair<CopyOnWriteArrayList<String>, Integer>> getSkillCategoryData() {
+        ConcurrentHashMap<String, Pair<CopyOnWriteArrayList<String>, Integer>> out = new ConcurrentHashMap<>();
         for (Skill.SkillType type : Skill.SkillType.values()) {
             int acquired = 0;
-            for (Skill skill : Skill.skillSet.get(type)) if (skill.acquired) acquired++;
-            out.put(type.name(), acquired);
+            CopyOnWriteArrayList<String> skillNames = new CopyOnWriteArrayList<>();
+            for (Skill skill : Skill.values()) {
+                if (skill.getType().equals(type)) {
+                    if (skill.acquired) acquired++;
+                    skillNames.add(skill.getName());
+                }
+            }
+            out.put(type.name(), new MutablePair<>(skillNames, acquired));
         }
         return out;
     }
 
-    public static HashMap<String, ArrayList<String>> getSkillSet() {
-        HashMap<String, ArrayList<String>> out = new HashMap<>();
-        for (Skill.SkillType type : Skill.skillSet.keySet()) {
-            ArrayList<String> skillNames = new ArrayList<>();
-            for (Skill skill : Skill.skillSet.get(type)) skillNames.add(skill.name);
-            out.put(type.name(), skillNames);
-        }
-        return out;
-    }
-
-    public static HashMap<String, Boolean> getSkillsAcquiredState() {
-        HashMap<String, Boolean> out = new HashMap<>();
-        for (Skill.SkillType type : Skill.skillSet.keySet()) {
-            for (Skill skill : Skill.skillSet.get(type)) {
-                out.put(skill.name, skill.acquired);
+    /**
+     * @return a thread-safe hashmap mapping to every skill name (as key), a pair (as value)
+     * of its cost and whether it's acquired]
+     */
+    public static ConcurrentHashMap<String, Pair<Integer, Boolean>> getSkillsData() {
+        ConcurrentHashMap<String, Pair<Integer, Boolean>> out = new ConcurrentHashMap<>();
+        for (Skill.SkillType type : Skill.SkillType.values()) {
+            for (Skill skill : Skill.values()) {
+                if (skill.getType().equals(type)) out.put(skill.getName(), new MutablePair<>(skill.getCost(), skill.acquired));
             }
         }
         return out;
     }
 
-    public static HashMap<String, Integer> getSkillsCosts() {
-        HashMap<String, Integer> out = new HashMap<>();
-        for (Skill.SkillType type : Skill.skillSet.keySet()) {
-            for (Skill skill : Skill.skillSet.get(type)) {
-                out.put(skill.name, skill.cost);
-            }
-        }
+    /**
+     * @return a thread-safe hashmap mapping to every ability name (as key) its activation cost (as value)
+     */
+    public static ConcurrentHashMap<String, Integer> getAbilitiesData() {
+        ConcurrentHashMap<String, Integer> out = new ConcurrentHashMap<>();
+        for (Ability ability : Ability.values()) out.put(ability.getName(), ability.getCost());
         return out;
     }
 
     public static String getActiveSkill() {
         if (Skill.activeSkill == null) return null;
-        return Skill.activeSkill.name;
+        return Skill.activeSkill.getName();
     }
 
     public static void setActiveSkill(String skillName) {
@@ -176,26 +199,43 @@ public abstract class UserInterfaceController {
     }
 
     public static boolean purchaseSkill(String skillName) {
-        //TODO check for enough XP
-        Objects.requireNonNull(findSkill(skillName)).acquired = true;
+        Skill skill = findSkill(skillName);
+        if (skill == null) return false;
+        if (Profile.getCurrent().totalXP < skill.getCost()) return false;
+        Profile.getCurrent().totalXP -= skill.getCost();
+        skill.acquired = true;
+        return true;
+    }
+
+    public static boolean activateAbility(String abilityName) {
+        Ability ability = findAbility(abilityName);
+        if (ability == null) return false;
+        if (Profile.getCurrent().currentGameXP < ability.getCost()) return false;
+        Profile.getCurrent().currentGameXP -= ability.getCost();
+        ability.getAction().actionPerformed(new ActionEvent(new Object(), ActionEvent.ACTION_PERFORMED, null));
         return true;
     }
 
     public static Skill findSkill(String name) {
-        for (Skill.SkillType type : Skill.skillSet.keySet()) {
-            for (Skill skill : Skill.skillSet.get(type)) {
-                if (skill.name.equals(name)) return skill;
+        for (Skill.SkillType type : Skill.SkillType.values()) {
+            for (Skill skill : Skill.values()) {
+                if (skill.getType().equals(type) && skill.getName().equals(name)) return skill;
             }
         }
         return null;
     }
 
-    public static ArrayList<Point> getGeoShapeVertices(String viewId) {
+    public static Ability findAbility(String name) {
+        for (Ability ability : Ability.values()) if (ability.getName().equals(name)) return ability;
+        return null;
+    }
+
+    public static CopyOnWriteArrayList<Point> getGeoShapeVertices(String viewId) {
         GeoShapeModel model = findModel(viewId);
         assert model != null;
         Point2D motionPanelLocation = Objects.requireNonNull(findMotionPanelModel(model.motionPanelId)).location;
-        ArrayList<Point> out = new ArrayList<>();
-        for (Point2D point2D : new ArrayList<>(model.vertices)) out.add(roundPoint(relativeLocation(point2D, motionPanelLocation)));
+        CopyOnWriteArrayList<Point> out = new CopyOnWriteArrayList<>();
+        for (Point2D point2D : model.vertices) out.add(roundPoint(relativeLocation(point2D, motionPanelLocation)));
         return out;
     }
 
@@ -218,28 +258,28 @@ public abstract class UserInterfaceController {
 
     public synchronized static GeoShapeView findView(String modelId) {
         for (GeoShapeView shapeView : allShapeViewsList) {
-            if (shapeView.getViewId().equals(modelId)) return shapeView;
+            if (modelId.equals(shapeView.getViewId())) return shapeView;
         }
         return null;
     }
 
     public synchronized static GeoShapeModel findModel(String viewId) {
         for (GeoShapeModel shapeModel : allShapeModelsList) {
-            if (shapeModel.getModelId().equals(viewId)) return shapeModel;
+            if (viewId.equals(shapeModel.getModelId())) return shapeModel;
         }
         return null;
     }
 
     public synchronized static MotionPanelModel findMotionPanelModel(String motionPanelId) {
         for (MotionPanelModel motionPanelModel : allMotionPanelModelsList) {
-            if (motionPanelModel.getModelId().equals(motionPanelId)) return motionPanelModel;
+            if (motionPanelId.equals(motionPanelModel.getModelId())) return motionPanelModel;
         }
         return null;
     }
 
     public synchronized static MotionPanelView findMotionPanelView(String motionPanelId) {
         for (MotionPanelView motionPanelView : allMotionPanelViewsList) {
-            if (motionPanelView.getViewId().equals(motionPanelId)) return motionPanelView;
+            if (motionPanelId.equals(motionPanelView.getViewId())) return motionPanelView;
         }
         return null;
     }
@@ -262,5 +302,11 @@ public abstract class UserInterfaceController {
         MotionPanelModel motionPanelModel = findMotionPanelModel(motionPanelId);
         assert motionPanelModel != null;
         return addUpPoints(motionPanelModel.location, multiplyPoint(motionPanelModel.dimension, 1 / 2F));
+    }
+
+    public static float showMessage(int i) {
+        if (i >= 0 && i < Message.MessageType.values().length) return new Message(Message.MessageType.values()[i]).exactLength;
+        if (i == -1) return new Message(Message.MessageType.GAME_OVER).exactLength;
+        return 0;
     }
 }

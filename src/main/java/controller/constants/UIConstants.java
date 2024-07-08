@@ -1,17 +1,18 @@
 package controller.constants;
 
+import model.Profile;
+
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 import static controller.constants.FilePaths.MANTINIA_FONT_PATH;
 import static controller.constants.FilePaths.ORBITRON_FONT_PATH;
-import static controller.constants.Variables.SIZE_SCALE;
 
 public enum UIConstants {
     MAX_GAME_SPEED, MIN_GAME_SPEED, MAX_VOLUME, MIN_VOLUME, PLAIN_FONT_SIZE, BOLD_FONT_SIZE,
     MENU_BUTTON_WIDTH, TEXT_SCALE, SLIDER_PRECISION_SCALE, MESSAGE_FADE_INTERVAL, MESSAGE_HEIGHT, MESSAGE_FONT_SIZE,
-    BACK_BUTTON_WIDTH, BACK_BUTTON_FONT_SCALE, SKILL_BUTTON_WIDTH, SKILL_FONT_SIZE, SKILL_TEXT_OFFSET,
+    BACK_BUTTON_WIDTH, BACK_BUTTON_FONT_SCALE, SKILL_BUTTON_WIDTH, SKILL_FONT_SIZE_SCALE, ABILITY_FONT_SIZE_SCALE, SKILL_TEXT_OFFSET,
     SLIDER_MINOR_SPACINGS_NUMBER, SLIDER_MAJOR_SPACINGS_NUMBER, SLIDER_LABEL_WIDTH, SLIDER_LABEL_FONT_SIZE;
 
     public static final Color BLOOD_RED = new Color(138, 3, 3);
@@ -43,7 +44,7 @@ public enum UIConstants {
             case MIN_GAME_SPEED -> 1;
             case MAX_VOLUME -> 8;
             case MIN_VOLUME -> 0; //All preset volumes shall be less than 2/MAX_VOLUME (currently 0.25)
-            case PLAIN_FONT_SIZE -> 32 * SIZE_SCALE;
+            case PLAIN_FONT_SIZE -> 32 * Profile.getCurrent().SIZE_SCALE;
             case BOLD_FONT_SIZE -> 1.05f * PLAIN_FONT_SIZE.getValue();
             case MENU_BUTTON_WIDTH -> 560;
             case TEXT_SCALE -> 0.8f;
@@ -52,14 +53,15 @@ public enum UIConstants {
             case MESSAGE_HEIGHT -> 100;
             case MESSAGE_FONT_SIZE -> 75;
             case BACK_BUTTON_WIDTH -> 720;
-            case BACK_BUTTON_FONT_SCALE -> 0.55f;
+            case BACK_BUTTON_FONT_SCALE -> 0.65f;
             case SKILL_BUTTON_WIDTH -> 240;
-            case SKILL_FONT_SIZE -> 0.45f;
+            case SKILL_FONT_SIZE_SCALE -> 0.6f;
+            case ABILITY_FONT_SIZE_SCALE -> 0.5f;
             case SKILL_TEXT_OFFSET -> -40;
             case SLIDER_MINOR_SPACINGS_NUMBER -> 100;
             case SLIDER_MAJOR_SPACINGS_NUMBER -> 20;
             case SLIDER_LABEL_WIDTH -> 150;
-            case SLIDER_LABEL_FONT_SIZE -> 0.4f;
+            case SLIDER_LABEL_FONT_SIZE -> 0.45f;
         };
     }
 }

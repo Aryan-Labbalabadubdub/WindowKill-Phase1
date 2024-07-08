@@ -1,7 +1,7 @@
-package model.projectileModels;
+package model.projectiles;
 
-import model.characterModels.GeoShapeModel;
-import model.entityModel.AttackTypes;
+import model.characters.GeoShapeModel;
+import model.entities.AttackTypes;
 
 import java.awt.*;
 
