@@ -97,7 +97,7 @@ public class SliderB extends JSlider {
             Graphics2D graphics2D = (Graphics2D) g.create();
             graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             graphics2D.translate(thumbRect.x, thumbRect.y);
-            graphics2D.setColor(BLOOD_RED.darker());
+            graphics2D.setColor(SCI_FI_BLUE.darker().darker());
             graphics2D.fillRect(0, 0, thumbRect.width, thumbRect.height);
             graphics2D.dispose();
         }

@@ -58,10 +58,7 @@ public final class UserInputHandler {
         inputMap.put(KeyStroke.getKeyStroke(PAUSE_KEYCODE, 0, true), PAUSE);
         actionMap.put(PAUSE, new AbstractAction() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                toggleGameRunning();
-                PauseMenu.getINSTANCE().togglePanel();
-            }
+            public void actionPerformed(ActionEvent e) {PauseMenu.getINSTANCE().togglePanel();}
         });
 
         inputMap.put(KeyStroke.getKeyStroke(SKILL_KEYCODE, 0, true), SKILL);

@@ -62,7 +62,7 @@ public class ButtonB extends JButton {
         setOpaque(true);
         setFont(plainFont);
         setBorderPainted(false);
-        setForeground(BLOOD_RED);
+        setForeground(SCI_FI_BLUE);
         setPreferredSize(desiredDimension);
         setContentAreaFilled(false);
         setFocusPainted(false);

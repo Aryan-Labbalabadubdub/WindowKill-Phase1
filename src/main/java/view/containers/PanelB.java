@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import static controller.constants.DefaultMethods.GET_AVERAGE_TONE_OF_CHARACTER;
 import static controller.constants.DimensionConstants.SCREEN_SIZE;
 import static controller.constants.FilePaths.MENU_IMAGEPATH;
 import static view.containers.GlassFrame.getGlassFrame;
@@ -21,18 +22,25 @@ public class PanelB extends JPanel {
 
     static {
         try {
-            defaultImage = ImageIO.read(new File(MENU_IMAGEPATH.getValue()));
+            BufferedImage image=ImageIO.read(new File(MENU_IMAGEPATH.getValue()));
+            float scale= (float) image.getWidth()/image.getHeight();
+            defaultImage = Utils.toBufferedImage(image.getScaledInstance((int) (SCREEN_SIZE.getValue().height*scale), SCREEN_SIZE.getValue().height, Image.SCALE_SMOOTH));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public static final boolean BACKGROUND_RESIZE=false;
     public BufferedImage imageSave;
     public BufferedImage currentImage;
     public GridBagConstraints constraints = new GridBagConstraints();
 
     public PanelB(Dimension dimension) {
-        this(dimension, Utils.toBufferedImage(defaultImage.getScaledInstance(dimension.width, dimension.height, Image.SCALE_SMOOTH)));
+        this(dimension,background(dimension));
+    }
+    public static BufferedImage background(Dimension dimension){
+        if (BACKGROUND_RESIZE) return Utils.toBufferedImage(defaultImage.getScaledInstance(dimension.width, dimension.height, Image.SCALE_SMOOTH));
+        else return defaultImage.getSubimage((defaultImage.getWidth()-dimension.width)/2,(defaultImage.getHeight()-dimension.height)/2,dimension.width,dimension.height);
     }
 
     public PanelB(Dimension dimension, BufferedImage image) {

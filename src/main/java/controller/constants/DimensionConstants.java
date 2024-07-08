@@ -20,7 +20,7 @@ public enum DimensionConstants {
             case MAIN_MENU_DIMENSION -> new Dimension(700, 800);
             case SETTINGS_MENU_DIMENSION -> new Dimension(900, 400);
             case SKILL_TREE_DIMENSION -> new Dimension(900, 750);
-            case PAUSE_MENU_DIMENSION -> new Dimension(850, 600);
+            case PAUSE_MENU_DIMENSION -> new Dimension(900, 750);
         };
     }
 

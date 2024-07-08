@@ -35,6 +35,7 @@ public class Message extends JLabel implements TopElement {
         setHorizontalAlignment(SwingConstants.CENTER);
         setOpaque(true);
 
+        PauseMenu.setPauseAccess(false);
         float length = 2 + playCountdownEffect(Arrays.stream(MessageType.values()).toList().indexOf(type));
         exactLength = (long) (TimeUnit.SECONDS.toNanos(1) * length);
         long startTime = System.nanoTime();
@@ -48,7 +49,9 @@ public class Message extends JLabel implements TopElement {
             if (elapsedTime > exactLength) {
                 frame.getContentPane().remove(this);
                 this.setVisible(false);
+                PauseMenu.setPauseAccess(true);
                 fadeTimer.stop();
+
             }
         });
         fadeTimer.start();

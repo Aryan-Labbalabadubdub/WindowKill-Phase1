@@ -23,6 +23,7 @@ import static view.containers.GlassFrame.getGlassFrame;
 public class PauseMenu extends PanelB implements TopElement {
     static CopyOnWriteArrayList<Component> abilities = new CopyOnWriteArrayList<>();
     private static PauseMenu INSTANCE;
+    private static boolean pauseAccess=true;
 
     private PauseMenu() {
         super(PAUSE_MENU_DIMENSION.getValue());
@@ -30,10 +31,7 @@ public class PauseMenu extends PanelB implements TopElement {
                 (int) BACK_BUTTON_WIDTH.getValue(), BACK_BUTTON_FONT_SCALE.getValue(), true, false);
         xp.setFont(xp.boldFont);
         ButtonB resume = new ButtonB(ButtonB.ButtonType.small_menu_button, "RESUME", (int) BACK_BUTTON_WIDTH.getValue(), BACK_BUTTON_FONT_SCALE.getValue(), false) {{
-            addActionListener(e -> {
-                PauseMenu.getINSTANCE().togglePanel();
-                toggleGameRunning();
-            });
+            addActionListener(e -> PauseMenu.getINSTANCE().togglePanel());
         }};
         SliderB volumeSlider = new SliderB(this, MIN_VOLUME.getValue(), MAX_VOLUME.getValue(), Profile.getCurrent().SOUND_SCALE, VOLUME_SLIDER_NAME.getValue());
         volumeSlider.addChangeListener(e -> {
@@ -51,7 +49,6 @@ public class PauseMenu extends PanelB implements TopElement {
                                     SUCCESSFUL_ABILITY_ACTIVATION_TITLE.getValue(), JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new Object[]{}, null);
                             if (confirmAction == JOptionPane.CLOSED_OPTION) {
                                 PauseMenu.getINSTANCE().togglePanel();
-                                toggleGameRunning();
                             }
                         } else {
                             JOptionPane.showOptionDialog(getINSTANCE(), DefaultMethods.UNSUCCESSFUL_ACTIVATE_MESSAGE(abilityName), UNSUCCESSFUL_PURCHASE_TITLE.getValue(),
@@ -67,7 +64,7 @@ public class PauseMenu extends PanelB implements TopElement {
                         , JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (action == JOptionPane.YES_OPTION) {
                     exitGame();
-                    PauseMenu.getINSTANCE().togglePanel();
+                    PauseMenu.getINSTANCE().togglePanel(true);
                     MainMenu.flushINSTANCE();
                     MainMenu.getINSTANCE().togglePanel();
                 }
@@ -92,6 +89,23 @@ public class PauseMenu extends PanelB implements TopElement {
         if (INSTANCE != null && !INSTANCE.isVisible()) INSTANCE = new PauseMenu();
         else if (INSTANCE == null) INSTANCE = new PauseMenu();
         return INSTANCE;
+    }
+
+    public static void setPauseAccess(boolean pauseAccess) {
+        PauseMenu.pauseAccess = pauseAccess;
+    }
+
+    @Override
+    public void togglePanel() {
+        togglePanel(false);
+    }
+    public void togglePanel(boolean exit){
+        if (!exit){
+            if (pauseAccess) {
+                super.togglePanel();
+                toggleGameRunning();
+            }
+        }
     }
 
     @Override

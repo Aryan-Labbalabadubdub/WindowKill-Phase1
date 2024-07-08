@@ -16,6 +16,7 @@ public enum UIConstants {
     SLIDER_MINOR_SPACINGS_NUMBER, SLIDER_MAJOR_SPACINGS_NUMBER, SLIDER_LABEL_WIDTH, SLIDER_LABEL_FONT_SIZE;
 
     public static final Color BLOOD_RED = new Color(138, 3, 3);
+    public static final Color SCI_FI_BLUE = new Color(52, 220, 240);
     public static Font MANTINIA_FONT;
     public static Font ORBITRON_FONT;
 
