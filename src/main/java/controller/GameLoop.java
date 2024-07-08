@@ -183,11 +183,10 @@ public final class GameLoop implements Runnable {
         running.set(!running.get());
     }
 
-    public boolean isRunning() {
-        return running.get();
-    }
+    public boolean isRunning() {return running.get();}
 
     public boolean isOn() {
         return !exit.get();
     }
+    public void setRunning(boolean running){this.running.set(running);}
 }

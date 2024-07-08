@@ -24,8 +24,8 @@ public enum UIMessageConstants {
                     Each enemy has a certain amount of HP\s
                     Entities fade in color as they lose HP\s
                     Nearby collisions emit impact waves. Use them in your favor\s
-                    Enemies become more and more as time passes. Be fast to survive.\s
-                    Use SHIFT to use your selected skill. Good Luck!
+                    Enemies become more and more as time passes. Be fast to survive\s
+                    Use SHIFT to use your selected skill. Press Esc to pause the game
                     """;
             case TUTORIAL_TITLE -> "Game Tutorial";
             case EXIT_GAME_MESSAGE -> "Are you sure to exit the game?\nAll progress will be lost.";

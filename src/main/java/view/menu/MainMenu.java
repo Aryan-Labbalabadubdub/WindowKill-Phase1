@@ -6,8 +6,7 @@ import view.containers.PanelB;
 import javax.swing.*;
 import java.util.List;
 
-import static controller.UserInterfaceController.playMenuTheme;
-import static controller.UserInterfaceController.toggleGameRunning;
+import static controller.UserInterfaceController.*;
 import static controller.constants.DimensionConstants.MAIN_MENU_DIMENSION;
 import static controller.constants.UIConstants.MENU_BUTTON_WIDTH;
 import static controller.constants.UIMessageConstants.*;

@@ -81,17 +81,13 @@ public abstract class UserInterfaceController {
         return GameLoop.getINSTANCE().isOn();
     }
 
-    public static boolean isGameRunning() {
-        return GameLoop.getINSTANCE().isRunning();
-    }
+    public static boolean isGameRunning() {return GameLoop.getINSTANCE().isRunning();}
 
-    public static void toggleGameRunning() {
-        GameLoop.getINSTANCE().toggleGameLoop();
-    }
-
+    public static void toggleGameRunning() {GameLoop.getINSTANCE().toggleGameLoop();}
     public static void exitGame() {
         GameLoop.getINSTANCE().forceExitGame();
         GameLoop.getINSTANCE().toggleGameLoop();
+        GameLoop.getINSTANCE().setRunning(false);
         EpsilonModel.flushINSTANCE();
         for (MotionPanelView motionPanelView : allMotionPanelViewsList) {
             motionPanelView.shapeViews.clear();
