@@ -2,21 +2,97 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="GameJRE" />
+      <artifact name="WindowKill:jar" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="426285f1-3a5f-4bb3-81ef-6e29e1a098c4" name="Changes" comment="Added shutdown hook, panel UI, collectible refinement">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="426285f1-3a5f-4bb3-81ef-6e29e1a098c4" name="Changes" comment="Added profile options and game over scene">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/WindowKill_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/AtomicFloat.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/collision/MovementState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/movement/Translatable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/view/menu/LoginPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/character sprites/epsilon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/ICON.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ui elements/LOADING_BACKGROUND.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/saves/62559349.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AudioHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AudioHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/TypedActionListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/TypedActionListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserInputHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserInputHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserInterfaceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserInterfaceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/DefaultMethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/DefaultMethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/DimensionConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/DimensionConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/EntityConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/EntityConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/FilePaths.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/FilePaths.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/ImpactConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ImpactConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/MovementConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/MovementConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/ShrinkConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ShrinkConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/UIConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/UIConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/UIMessageConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/UIMessageConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/constants/ViewConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/constants/ViewConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/JsonOperator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/JsonOperator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/MotionPanelModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/MotionPanelModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/WaveManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/WaveManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/characters/CollectibleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/characters/CollectibleModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/characters/EpsilonModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/characters/EpsilonModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/characters/GeoShapeModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/characters/GeoShapeModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/characters/SquarantineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/characters/SquarantineModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/characters/TrigorathModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/characters/TrigorathModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/collision/Collidable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/collision/Collidable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/collision/Collision.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/collision/Collision.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/collision/CollisionState.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/entities/Ability.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/entities/Ability.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/entities/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/entities/Skill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/movement/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/movement/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/movement/Movable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/movement/Movable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/movement/Movement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/movement/Movement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/projectiles/BulletModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/projectiles/BulletModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/projectiles/Long_Ranged.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/projectiles/LongRanged.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/characters/CollectibleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/characters/CollectibleView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/characters/EpsilonView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/characters/EpsilonView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/characters/GeoShapeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/characters/GeoShapeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/ButtonB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/ButtonB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/GlassFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/GlassFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/MotionPanelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/MotionPanelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/PanelB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/PanelB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/RotatedIcon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/RotatedIcon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/SliderB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/SliderB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/containers/TopElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/containers/TopElement.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/view/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menu/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menu/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menu/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menu/PauseMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menu/PauseMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menu/SettingsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menu/SettingsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/view/menu/SkillTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/view/menu/SkillTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/effects/xp effects/xp0.ogg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/effects/xp effects/XP0.ogg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/epsilon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/character sprites/bullet.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/squarantine.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/character sprites/squarantine.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/trigorath.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/character sprites/trigorath.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/acquired_skill.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/ACQUIRED_SKILL.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/active_skill.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/ACTIVE_SKILL.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/category0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/TYPE0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/category1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/TYPE1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/category2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/TYPE2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/category3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/TYPE3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/menu.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/MENU.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/menu_button.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/MENU_BUTTON.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/slider.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/SLIDER.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/small_field_button.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/SMALL_FIELD_BUTTON.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/small_menu_button.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/SMALL_MENU_BUTTON.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ui elements/unacquired_skill.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ui elements/UNACQUIRED_SKILL.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/saves/de3720f8-c44f-4832-98ef-ee2856bd51f7.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +106,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -49,6 +125,9 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/view/containers/SliderB.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/view/containers/TopElement.java" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="JvmLoggingSettingsStorage">
+    <option name="loggerId" value="Log4j2" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -56,6 +135,7 @@
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="vmOptionsForImporter" value="-Xmx512m" />
+        <option name="workspaceImportForciblyTurnedOn" value="true" />
       </MavenImportingSettings>
     </option>
   </component>
@@ -67,9 +147,15 @@
     </option>
     <option name="jreName" value="openjdk-18" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2e6XxiSnOjUFR9RBoq4AbG2bobW" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -80,15 +166,18 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.WindowKill.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Aryan/IdeaProjects/WindowKill",
-    "project.structure.last.edited": "Modules",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Aryan/IdeaProjects/WindowKill/src/main/resources/ui elements",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15546219",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.runner",
+    "settings.editor.selected.configurable": "http.proxy",
     "settings.editor.splitter.proportion": "0.22187172"
   }
 }]]></component>
@@ -97,18 +186,18 @@
       <recent name="view.menu" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill\src\main\resources\ui elements" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill\src\main\resources\character sprites" />
+      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill\src\main\resources" />
       <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui elements" />
       <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\fonts" />
-      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\backgrounds" />
-      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\ui items" />
-      <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources" />
     </key>
     <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="model.Profile" />
+      <recent name="view.Utils" />
       <recent name="controller.UserInterfaceController" />
       <recent name="controller.constants.DefaultMethods" />
-      <recent name="model.Profile" />
       <recent name="view.menu.Message.MessageType" />
-      <recent name="view.menu.Message" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Aryan\IdeaProjects\WindowKill_Phase1\src\main\resources\effects\shoot effects" />
@@ -126,13 +215,15 @@
       <recent name="view.menu" />
     </key>
     <key name="MoveInnerDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="model.collision" />
       <recent name="model" />
     </key>
   </component>
   <component name="RunManager" selected="Application.WindowKill">
     <configuration name="WindowKill" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.Main" />
-      <module name="WindowKill" />
+      <module name="WindowKill_Phase1" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1720440076907</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added profile options and game over scene">
+      <created>1720461136688</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1720461136688</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,11 +290,13 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="A full Pure-Java recreation of torcado's WindowKill" />
     <MESSAGE value="Added skills, abilities, more sound effects!" />
     <MESSAGE value="Added skills, abilities, more sound effects." />
     <MESSAGE value="Added shutdown hook, panel UI, collectible refinement" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added shutdown hook, panel UI, collectible refinement" />
+    <MESSAGE value="Added profile options and game over scene" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added profile options and game over scene" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
